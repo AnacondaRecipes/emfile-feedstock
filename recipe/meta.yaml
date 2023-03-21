@@ -10,33 +10,40 @@ source:
   sha256: d7e9114aac5e2a29db9d77ab669659499c2f8c38ca13a5ff468c39ec89181a9b
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vvv --no-deps
   number: 0
+  skip: True  # [py<37]
 
 requirements:
   host:
-    - numpy
+    - numpy {{ numpy }}
     - pip
-    - python >=3.7
+    - setuptools
+    - wheel
+    - python
   run:
     - numpy
-    - python >=3.7
+    - python
 
 test:
+  requires:
+    - pip
   imports:
     - emfile
   commands:
     - pip list
     - pip check
-  requires:
-    - pip
 
 about:
   home: https://github.com/brisvag/emfile
   summary: Basic utility to read tomography data from files in `*.em` format.
   license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE
+  description: |
+    Basic utility to read tomography data from files in `*.em` format.
+  doc_url: https://github.com/brisvag/emfile
+  dev_url: https://github.com/brisvag/emfile
 
 extra:
   recipe-maintainers:
