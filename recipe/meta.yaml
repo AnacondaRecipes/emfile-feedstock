@@ -6,13 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/emfile-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/emfile-{{ version }}.tar.gz
   sha256: d7e9114aac5e2a29db9d77ab669659499c2f8c38ca13a5ff468c39ec89181a9b
 
 build:
   script: {{ PYTHON }} -m pip install . -vvv --no-deps
-  number: 0
-  skip: True  # [py<37]
+  number: 1
+  skip: true  # [py<37]
 
 requirements:
   host:
